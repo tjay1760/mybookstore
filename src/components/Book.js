@@ -67,7 +67,7 @@ function Book({ bookProp, id }) {
           </article>
         </div>
         <div className={styles.currentchapter}>
-          <p className={styles.chaptitle}>CURRENT CHAPTER</p>
+          <p className={styles.chaptertitle}>CURRENT CHAPTER</p>
           <p>
             Chapter
             {' '}
