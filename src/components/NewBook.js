@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AddBook, FetchBooks } from '../redux/books/booksSlice';
+import './NewBook.css'; // Import the CSS file
 
 const NewBook = () => {
   const dispatch = useDispatch();
@@ -9,8 +10,6 @@ const NewBook = () => {
     title: '',
     author: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [inputErrors, setInputErrors] = useState({});
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -20,66 +19,26 @@ const NewBook = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const errors = {};
-    if (!newBook.title) {
-      errors.title = 'Please enter the book title.';
-    }
-    if (!newBook.author) {
-      errors.author = 'Please enter the book author.';
-    }
-
-    if (Object.keys(errors).length > 0) {
-      setInputErrors(errors);
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      await dispatch(AddBook(newBook));
-      setNewBook({
-        item_id: '',
-        title: '',
-        author: '',
-      });
-      await new Promise((resolve) => setTimeout(resolve, 1300));
-      await dispatch(FetchBooks());
-    } catch (error) {
-      setInputErrors({ submitError: 'Error adding book. Please try again later.' });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
-    <div className="new-book-container">
-      <h1>ADD NEW BOOK</h1>
-      <form className="new-book-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Book title"
-          value={newBook.title}
-          onChange={handleInputChange}
-          className={inputErrors.title ? 'error-input' : ''}
-        />
-        {inputErrors.title && <div className="error-message">{inputErrors.title}</div>}
-        <input
-          type="text"
-          name="author"
-          placeholder="Book author"
-          value={newBook.author}
-          onChange={handleInputChange}
-          className={inputErrors.author ? 'error-input' : ''}
-        />
-        {inputErrors.author && <div className="error-message">{inputErrors.author}</div>}
-        <button type="submit" className={`new-book-submit-btn ${isSubmitting ? 'submitting' : ''}`} disabled={isSubmitting}>
-          {isSubmitting ? 'Adding...' : 'ADD BOOK'}
-        </button>
-        {inputErrors.submitError && <div className="error-message">{inputErrors.submitError}</div>}
+    <div className="add-book">
+      <h1 className="newbookh1">ADD NEW BOOK</h1>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        dispatch(AddBook(newBook));
+
+        setNewBook({
+          item_id: '',
+          title: '',
+          author: '',
+        });
+        setTimeout(() => {
+          dispatch(FetchBooks());
+        }, 1300);
+      }}
+      >
+        <input className="newbooktitle" type="text" name="title" placeholder="Book title" value={newBook.title} onChange={handleInputChange} />
+        <input className="newbookauthor" type="text" name="author" placeholder="Book author" value={newBook.author} onChange={handleInputChange} />
+        <button className="submit" type="submit">ADD BOOK</button>
       </form>
     </div>
   );

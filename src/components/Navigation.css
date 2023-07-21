@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  width: 50%;
+}
+
+.title {
+  color: #0290ff;
+}
