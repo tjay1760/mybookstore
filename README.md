@@ -1,4 +1,5 @@
 <a name="readme-top"></a>
+![Screenshot](src/assets/Screenshot%20from%202023-07-22%2000-07-49.png)
 
 <div align="center">
 

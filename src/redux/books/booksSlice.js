@@ -2,17 +2,19 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
-const appID = 'ZCBAf3zk1RFF2I8QAB8c';
-const url = `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${appID}/books`;
-export const FetchBooks = createAsyncThunk('books/getBooks', async (_, thunkAPI) => {
-  try {
-    const resp = await axios(url);
-    const bookArray = Object.values(resp.data);
-    return bookArray;
-  } catch (error) {
-    return thunkAPI.rejectWithValue('something went wrong');
-  }
-});
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ikr08Eaq8b4oLKCQJpOk/books';
+
+export const FetchBooks = createAsyncThunk(
+  'books/getBooks',
+  async (_, thunkAPI) => {
+    try {
+      const resp = await axios(url);
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('something went wrong');
+    }
+  },
+);
 
 export const RemoveBook = createAsyncThunk(
   'books/deleteBooks',
@@ -28,7 +30,7 @@ export const RemoveBook = createAsyncThunk(
 
 export const AddBook = createAsyncThunk(
   'books/addBook',
-  async (newBook, thunkAPI) => {
+  async (newBook, rejectWithValue) => {
     const book = {
       item_id: uuidv4(),
       title: newBook.title,
@@ -39,17 +41,19 @@ export const AddBook = createAsyncThunk(
       const resp = await axios.post(url, book);
       return resp.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   },
 );
 
+// export const RemoveBookAPI
 const initialState = {
   books: {},
   isLoading: false,
 };
 
 const bookSlice = createSlice({
+
   name: 'books',
   initialState,
   reducers: {},
