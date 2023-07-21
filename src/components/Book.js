@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { RemoveBook, FetchBooks } from '../redux/books/booksSlice';
@@ -7,16 +8,17 @@ function Book({ bookProp, id }) {
   const dispatch = useDispatch();
   const randomPercentage = Math.floor(Math.random() * 100) + 1;
   const randomNumber = Math.floor(Math.random() * 10) + 1;
+  const [error, setError] = useState(null);
+
   const handleRemoveBook = async () => {
     try {
       await dispatch(RemoveBook(id));
-      setTimeout(() => {
-        dispatch(FetchBooks());
-      }, 2000);
+      await dispatch(FetchBooks());
     } catch (error) {
-      console.log('Error removing book:', error);
+      setError('Error removing book. Please try again later.');
     }
   };
+
   return (
     <div className={styles.book}>
       <div className={styles['book-details']}>
@@ -74,6 +76,7 @@ function Book({ bookProp, id }) {
           <button type="button" className={styles.update}>UPDATE PROGRESS</button>
         </div>
       </div>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 }
