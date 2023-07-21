@@ -17,6 +17,7 @@ const BookList = () => {
     <>
       {isLoading ? (<div>Loading...</div>) : (
         <ul className={styles.booklist}>
+
           { bookArray && Object.keys(bookArray).map((bookId) => (
             <li key={bookId}><Book bookProp={bookArray[bookId]} id={bookId} /></li>
           ))}
