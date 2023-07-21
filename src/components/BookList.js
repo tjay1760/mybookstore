@@ -1,30 +1,14 @@
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import BookDisplay from './BookDisplay';
 
 const BookList = () => {
-  const [books, setBooks] = useState([
-    {
-      id: 1,
-      title: 'Thinking Fast and Slow',
-      author: 'Daniel Kahneman',
-    },
-    {
-      id: 2,
-      title: 'Shetani Msalabani',
-      author: 'Ngugi wa Thiong\'o',
-    },
-  ]);
-
-  const deleteBook = (id) => {
-    setBooks(books.filter((book) => book.id !== id));
-  };
-
+  const books = useSelector((state) => state.books.books);
   return (
     <>
       <ul>
         {books.map((book) => (
-          <li key={book.id}>
-            <BookDisplay book={book} onDelete={deleteBook} />
+          <li key={book.item_id}>
+            <BookDisplay book={book} />
           </li>
         ))}
       </ul>
