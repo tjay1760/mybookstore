@@ -1,36 +1,36 @@
 :root {
-  --black: #1e1e1e;
-  --medium-blue: #307bbe;
-  --white: #fafafa;
-  --white-two: #fff;
-  --white-three: #e8e8e8;
-  --azure: #0290ff;
-  --black-5: rgba(0, 0, 0, 0.05);
-  --light-blue: #4386bf;
-}
-
-.book,
-.book-details,
-.actionsul,
-.readstate {
-  display: flex;
+  --primary-black: #1e1e1e;
+  --primary-blue: #307bbe;
+  --primary-white: #fafafa;
+  --secondary-white: #fff;
+  --tertiary-white: #e8e8e8;
+  --primary-azure: #0290ff;
+  --primary-black-5: rgba(0, 0, 0, 0.05);
+  --secondary-blue: #4386bf;
 }
 
 .book {
-  flex-direction: column;
   width: calc(100% - (6.25rem * 2));
   height: 10.625rem;
   justify-self: center;
   margin: 0 6.25rem;
-  border: solid 1px var(--white-three);
-  background-color: var(--white-two);
+  border: solid 1px var(--tertiary-white);
+  background-color: var(--secondary-white);
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
 }
 
 .book:hover {
   box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 2px 6px 2px;
-  background-color: var(--white-three);
-  border-color: var(--azure);
+  background-color: var(--tertiary-white);
+  border-color: var(--primary-azure);
+}
+
+.book-details,
+.actionsul,
+.readstate {
+  display: flex;
 }
 
 .maininfo {
@@ -40,14 +40,14 @@
 }
 
 .genre {
-  color: var(--black);
-  opacity: 0.5;
   width: 3.063rem;
   height: 1.125rem;
   margin: 0 2.438rem 0 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.875rem;
   font-weight: bold;
+  color: var(--primary-black);
+  opacity: 0.5;
 }
 
 .title {
@@ -68,7 +68,7 @@
   font-family: 'RobotoSlab', sans-serif;
   font-size: 0.875rem;
   font-weight: 300;
-  color: var(--light-blue);
+  color: var(--secondary-blue);
 }
 
 .actionsul {
@@ -80,7 +80,7 @@
 .remove {
   width: 4rem;
   padding-right: 0.938rem;
-  border-right: 1px solid var(--light-blue);
+  border-right: 1px solid var(--secondary-blue);
 }
 
 .edit {
@@ -94,19 +94,12 @@
   font-family: 'RobotoSlab', sans-serif;
   font-size: 0.875rem;
   font-weight: 300;
-  color: var(--light-blue);
+  color: var(--secondary-blue);
   border: none;
   background: transparent;
   padding: 0;
   text-align: start;
 }
-
-.status {
-  width: 50px;
-  height: 50px;
-}
-
-/* readstate */
 
 .readstate {
   flex-grow: 1;
@@ -133,24 +126,24 @@
 .update {
   cursor: pointer;
   border: none;
-  background-color: var(--azure);
+  background-color: var(--primary-azure);
   border-radius: 3px;
   padding: 8px 24px;
-  font-family: "Roboto Slab", serif;
+  font-family: 'Roboto Slab', serif;
   font-weight: 300;
   letter-spacing: 0.5px;
-  color: var(--white-two);
+  color: var(--secondary-white);
 }
 
 .currentchapter {
   flex-grow: 1;
-  border-left: 1px solid var(--white-three);
+  border-left: 1px solid var(--tertiary-white);
   padding-left: 3rem;
 }
 
 .chaptertitle {
   opacity: 0.5;
-  font-family: "Roboto Slab", serif;
+  font-family: 'Roboto Slab', serif;
   font-weight: 300;
 }
 

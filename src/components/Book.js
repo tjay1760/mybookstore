@@ -6,8 +6,8 @@ import styles from './Book.module.css';
 
 function Book({ bookProp, id }) {
   const dispatch = useDispatch();
-  const randomPercentage = Math.floor(Math.random() * 100) + 1;
-  const randomNumber = Math.floor(Math.random() * 10) + 1;
+  const ranPercentage = Math.floor(Math.random() * 100) + 1;
+  const ranNumber = Math.floor(Math.random() * 10) + 1;
   const [error, setError] = useState(null);
 
   const handleRemoveBook = async () => {
@@ -60,7 +60,7 @@ function Book({ bookProp, id }) {
           <div className={styles.circle} />
           <article className={styles.statusdetails}>
             <h2>
-              {randomPercentage}
+              {ranPercentage}
               %
             </h2>
             <p className={styles.completed}>Completed</p>
@@ -71,7 +71,7 @@ function Book({ bookProp, id }) {
           <p>
             Chapter
             {' '}
-            {randomNumber}
+            {ranNumber}
           </p>
           <button type="button" className={styles.update}>UPDATE PROGRESS</button>
         </div>
