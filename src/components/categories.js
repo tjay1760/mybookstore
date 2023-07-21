@@ -11,10 +11,8 @@ const Categories = () => {
     dispatch(getStatus());
   }, [dispatch]);
 
-  // Extract the 'categories' array from the categoriesState object
   const { categories } = categoriesState;
 
-  // Check if 'Under construction' is present in categories
   const isUnderConstruction = categories.includes('Under construction');
 
   return (
