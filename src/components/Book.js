@@ -10,11 +10,13 @@ function Book({ bookProp, id }) {
   const randomNumber = Math.floor(Math.random() * 10) + 1;
   const [error, setError] = useState(null);
 
+
   const handleRemoveBook = async () => {
     try {
       await dispatch(RemoveBook(id));
       await dispatch(FetchBooks());
     } catch (error) {
+
       setError('Error removing book. Please try again later.');
     }
   };
